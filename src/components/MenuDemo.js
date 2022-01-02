@@ -10,7 +10,7 @@ import { Button } from 'primereact/button';
 import { ContextMenu } from 'primereact/contextmenu';
 import { MegaMenu } from 'primereact/megamenu';
 import { PanelMenu } from 'primereact/panelmenu';
-import { Route, useHistory, useLocation } from 'react-router-dom';
+import { Route, useNavigate, useLocation } from 'react-router-dom';
 import { PersonalDemo } from '../components/menu/PersonalDemo';
 import { ConfirmationDemo } from '../components/menu/ConfirmationDemo';
 import { PaymentDemo } from '../components/menu/PaymentDemo';
@@ -22,7 +22,7 @@ export const MenuDemo = () => {
 
     const menu = useRef(null);
     const contextMenu = useRef(null);
-    const history = useHistory();
+    const history = useNavigate();
     const location = useLocation();
 
     const checkActiveIndex = useCallback(() => {

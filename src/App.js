@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import { Route } from 'react-router-dom';
+import { Route, Routes, useLocation} from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import { AppTopbar } from './AppTopbar';
@@ -55,6 +55,7 @@ const App = () => {
     const [mobileMenuActive, setMobileMenuActive] = useState(false);
     const [mobileTopbarMenuActive, setMobileTopbarMenuActive] = useState(false);
     const copyTooltipRef = useRef();
+    const location = useLocation();
 
     PrimeReact.ripple = true;
 
@@ -69,6 +70,10 @@ const App = () => {
             removeClass(document.body, "body-overflow-hidden");
         }
     }, [mobileMenuActive]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [location]);
 
     const onInputStyleChange = (inputStyle) => {
         setInputStyle(inputStyle);
@@ -292,29 +297,31 @@ const App = () => {
 
             <div className="layout-main-container">
                 <div className="layout-main">
-                    <Route path="/" exact component={Dashboard} />
-                    <Route path="/formlayout" component={FormLayoutDemo} />
-                    <Route path="/input" component={InputDemo} />
-                    <Route path="/floatlabel" component={FloatLabelDemo} />
-                    <Route path="/invalidstate" component={InvalidStateDemo} />
-                    <Route path="/button" component={ButtonDemo} />
-                    <Route path="/table" component={TableDemo} />
-                    <Route path="/list" component={ListDemo} />
-                    <Route path="/tree" component={TreeDemo} />
-                    <Route path="/panel" component={PanelDemo} />
-                    <Route path="/overlay" component={OverlayDemo} />
-                    <Route path="/media" component={MediaDemo} />
-                    <Route path="/menu" component={MenuDemo} />
-                    <Route path="/messages" component={MessagesDemo} />
-                    <Route path="/blocks" component={BlocksDemo} />
-                    <Route path="/icons" component={IconsDemo} />
-                    <Route path="/file" component={FileDemo} />
-                    <Route path="/chart" component={ChartDemo} />
-                    <Route path="/misc" component={MiscDemo} />
-                    <Route path="/timeline" component={TimelineDemo} />
-                    <Route path="/crud" component={Crud} />
-                    <Route path="/empty" component={EmptyPage} />
-                    <Route path="/documentation" component={Documentation} />
+                   <Routes>
+                       <Route path="/" exact element={<Dashboard/>} />
+                       <Route path="/formlayout" element={<FormLayoutDemo/>} />
+                       <Route path="/input" element={<InputDemo/>} />
+                       <Route path="/floatlabel" element={<FloatLabelDemo/>} />
+                       <Route path="/invalidstate" element={<InvalidStateDemo/>} />
+                       <Route path="/button" element={<ButtonDemo/>} />
+                       <Route path="/table" element={<TableDemo/>} />
+                       <Route path="/list" element={<ListDemo/>} />
+                       <Route path="/tree" element={<TreeDemo/>} />
+                       <Route path="/panel" element={<PanelDemo/>} />
+                       <Route path="/overlay" element={<OverlayDemo/>} />
+                       <Route path="/media" element={<MediaDemo/>} />
+                       <Route path="/menu" element={<MenuDemo/>} />
+                       <Route path="/messages" element={<MessagesDemo/>} />
+                       <Route path="/blocks" element={<BlocksDemo/>} />
+                       <Route path="/icons" element={<IconsDemo/>} />
+                       <Route path="/file" element={<FileDemo/>} />
+                       <Route path="/chart" element={<ChartDemo/>} />
+                       <Route path="/misc" element={<MiscDemo/>} />
+                       <Route path="/timeline" element={<TimelineDemo/>} />
+                       <Route path="/crud" element={<Crud/>} />
+                       <Route path="/empty" element={<EmptyPage/>} />
+                       <Route path="/documentation" element={<Documentation/>} />
+                    </Routes>
                 </div>
 
                 <AppFooter layoutColorMode={layoutColorMode} />
