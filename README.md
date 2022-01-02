@@ -54,7 +54,7 @@ Update `package.json` to use [React App Rewired](https://github.com/timarney/rea
 
 Create `config-overrides.js` file in the project root directory next to `package.json`:
 
-```json
+```javascript
 const { override } = require('customize-cra');
 const CspHtmlWebpackPlugin = require("@melloware/csp-webpack-plugin");
 
@@ -90,28 +90,35 @@ Execute `npm run build` to generate production build at you should be able to se
 For each CSS and JS a nonce value is assigned and all in-line styles and scripts are blocked!
 
 ```xml
-<meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; 
+<meta http-equiv="Content-Security-Policy" 
+     content="base-uri 'self'; object-src 'none'; 
      script-src 'self' 'nonce-hV1jy80qaffHEIfJ2wpryg=='; 
      style-src 'self' 'nonce-79pyUhldGFpDoALHNYfQzA==' 'nonce-BTVl+seb2fGInJbnPSfhVQ==' 'nonce-4kArpnz/wuhrQYZxqAJFqA=='; 
-     default-src 'none'; connect-src 'self'; worker-src 'self' blob:; img-src 'self' blob: data: content:; font-src 'self'; frame-src 'self'">
+     default-src 'none'; 
+     connect-src 'self'; 
+     worker-src 'self' blob:; 
+     img-src 'self' blob: data: content:; 
+     font-src 'self'; 
+     frame-src 'self'">
 
-<link id="theme-link" rel="stylesheet" href="./assets/themes/lara-dark-indigo/theme.css" nonce="79pyUhldGFpDoALHNYfQzA==">
+<link href="./assets/themes/lara-dark-indigo/theme.css" nonce="79pyUhldGFpDoALHNYfQzA==" rel="stylesheet">
 ```
 
 ### PrimeReact
 
 [PrimeReact](https://www.primefaces.org/primereact/) is one of the most popular React UI libraries and it has special handling for 
 responsive design components.  PrimeReact injects in-line CSS styles for some components such as the [Datatable](https://primefaces.org/primereact/datatable/responsive/) to 
-handle the responsive features. In-line styles would be a CSP violation without a nonce value but thanks to [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin) 
-used above it has special handling to allow PrimeReact to use its dynamic in-line styles.
+handle the responsive features. In-line styles would be a CSP violation, but thanks to [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin) 
+it has special handling to allow PrimeReact to use its dynamic in-line styles without violating CSP rules.
 
 ## Subresource Integrity
 
 [Subresource Integrity](http://www.w3.org/TR/SRI/) (SRI) is a security feature that enables browsers to verify that files they fetch are delivered without unexpected manipulation.
 
-Since we are using the [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin) it automatically adds SHA384 integrity values to all CSS and JS.  This allows the
-browser to verify that the script has not been tampered with and prevent ["man in the middle"(https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks.  
-When you look at `index.html` of your production build you will see those values now have an `integrity` as well as a CSP `nonce` values:
+By using the [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin) it automatically adds SHA384 integrity values to all CSS and JS.  This allows the
+browser to verify that the script has not been tampered with and prevent ["man in the middle"](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks.  
+
+When you view `index.html` of your production build you will see those values now have an `integrity` as well as a CSP `nonce` values:
 
 ```xml
 <script src="./static/js/main.8bde7ba0.js" defer="defer" 
@@ -127,7 +134,7 @@ When you look at `index.html` of your production build you will see those values
 
 ## Source Maps
 
-Earlier in `.env` we set this property `GENERATE_SOURCEMAP=false`.  This issue is the *least* important compared to the others above and has been debated on how important it really is. 
+Earlier in `.env` we set this property `GENERATE_SOURCEMAP=false`.  This issue is the **least** important compared to the others above and has been debated on how important it really is. 
 
 A _"source map"_ is a special file that connects a minified/uglified version of an asset (CSS or JavaScript) to the original authored version.
 Create React App by default will generate source maps for your CSS and JS files. The main reason I prefer not to include source maps is _"Why make
