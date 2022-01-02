@@ -22,13 +22,16 @@
         "react-transition-group": "4.4.2"
     },
     "devDependencies": {
+        "@melloware/csp-webpack-plugin": "^6.0.1",
+        "customize-cra": "^1.0.0",
+        "react-app-rewired": "^2.1.11",
         "react-scripts": "^5.0.0",
         "sass": "1.45.2"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
+        "start": "react-app-rewired start",
+        "build": "react-app-rewired build",
+        "test": "react-app-rewired test",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
