@@ -10,7 +10,10 @@ too often developers are content with this build assuming Facebook has done all 
 The question to ask yourself is: _"Can I do more to secure my application from hackers?"_.  This article is the result of my research and final decisions
 on how to security harden my production applications.
 
-I will show you in the following steps how to make your CRA application more secure and battle ready for your organization.
+This article will show you how to make your CRA application more secure for your organization by implementing:
+- Content Security Policy (CSP)
+- Subresource Integrity (SRI)
+- Excluding Source Maps
 
 ## Content Security Policy (CSP)
 
@@ -136,19 +139,20 @@ When you view `index.html` of your production build you will see those values no
 
 Earlier in `.env` we set this property `GENERATE_SOURCEMAP=false`.  This issue is the **least** important compared to the others above and has been debated on how important it really is. 
 
-A _"source map"_ is a special file that connects a minified/uglified version of an asset (CSS or JavaScript) to the original authored version.
+> A _"source map"_ is a special file that connects a minified/uglified version of an asset (CSS or JavaScript) to the original authored version.
+
 Create React App by default will generate source maps for your CSS and JS files. The main reason I prefer not to include source maps is _"Why make
 hacker's life any easier by showing them your raw source code?"_.  Make a hacker go the extra mile and have to decode your uglified source code...for example:
 
-*Uglified:*
+**Uglified:**
 ```javascript
-function a(b, c){return b*c/c)};
+function a(b, c){return b*c/c};
 ```
 
-*Source Map:*
+**Source Map:**
 ```javascript
 function calculateFinancials (amount: double, total: double) {
-   return amount * total / total);
+   return amount * total / total;
 }
 ```
 
