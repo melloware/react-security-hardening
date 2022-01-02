@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Prism from 'prismjs/components/prism-core';
+import Prism from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-jsx';
