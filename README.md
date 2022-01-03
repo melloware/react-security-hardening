@@ -32,7 +32,7 @@ By default, Create React App will embed an in-line script into `index.html` duri
 
 > This is a small chunk of webpack runtime logic which is used to load and run the application. The contents of this will be embedded in your build/index.html file by default to save an additional network request.
 
-You should set `INLINE_RUNTIME_CHUNK` environment variable to false, the script will not be embedded and will be imported as usual. More on `GENERATE_SOURCEMAP` later...
+Create/update the `.env` file in your project root directory and set `INLINE_RUNTIME_CHUNK` environment variable to false, the script will not be embedded and will be imported as usual. More on `GENERATE_SOURCEMAP` later...
 
 ```properties
 INLINE_RUNTIME_CHUNK=false
