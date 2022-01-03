@@ -18,7 +18,7 @@ This article will show you how to make your CRA application more secure for your
 ## Content Security Policy (CSP)
 
 [Content Security Policy](https://developers.google.com/web/fundamentals/security/csp/) is your first line of defense against hackers and CSP Level 2 is supported in all modern browsers.
-I won't go into detail on what CSP is you can read more about that [here](https://developers.google.com/web/fundamentals/security/csp/).  
+I won't go into detail on what CSP is but you can read more about that [here](https://developers.google.com/web/fundamentals/security/csp/).  
 
 One of the most common forms of malware infections by hackers is known as [drive-by cryptojacking](https://www.malwarebytes.com/cryptojacking).  
 _Similar to malicious advertising exploits, the scheme involves embedding a piece of JavaScript code into a web page. After that, it performs cryptocurrency mining on user machines that visit the page._
