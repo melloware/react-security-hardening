@@ -141,8 +141,9 @@ Earlier in `.env` we set this property `GENERATE_SOURCEMAP=false`.  This issue i
 
 > A _"source map"_ is a special file that connects a minified/uglified version of an asset (CSS or JavaScript) to the original authored version.
 
-Create React App by default will generate source maps for your CSS and JS files. The main reason I prefer not to include source maps is _"Why make
-hacker's life any easier by showing them your raw source code?"_.  Make a hacker go the extra mile and have to decode your uglified source code...for example:
+Create React App by default will generate source maps for your CSS and JS files.  Attackers will most often try to understand your code to hack their way through. Therefore, having a readable source code in the production build increases the attack surface.
+
+Make a hacker go the extra mile and have to decode your uglified source code...for example:
 
 **Uglified:**
 ```javascript
