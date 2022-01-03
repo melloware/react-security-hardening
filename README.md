@@ -141,7 +141,7 @@ When you view `index.html` of your production build you will see those values no
 
 Create React App by default will generate source maps for your CSS and JS files.  Attackers will most often try to understand your code to hack their way through. Therefore, having a readable source code in the production build increases the attack surface.
 
-Make a hacker go the extra mile and have to decode your uglified source code...for example:
+Make a hacker go the extra mile and have to decode your uglified source code by adding `GENERATE_SOURCEMAP=false` to the `.env` file.
 
 **Uglified:**
 ```javascript
