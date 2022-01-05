@@ -89,7 +89,7 @@ module.exports = {
 ```
 
 ### Execute Build
-Execute `npm run build` to generate production build at you should be able to see these changes in production `index.html` file.
+Execute `npm run build` to generate a production build and you should be able to see these changes in production `index.html` file.
 For each CSS and JS a nonce value is assigned and all in-line styles and scripts are blocked!
 
 ```xml
@@ -121,7 +121,7 @@ it has special handling to allow PrimeReact to use its dynamic in-line styles wi
 By using the [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin) it automatically adds SHA384 integrity values to all CSS and JS.  This allows the
 browser to verify that the script has not been tampered with and prevent ["man in the middle"](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks.  
 
-When you view `index.html` of your production build you will see those values now have an `integrity` as well as a CSP `nonce` values:
+When you view `index.html` of your production build you will see those values now have an `integrity` attribute as well as a CSP `nonce` attribute:
 
 ```xml
 <script src="./static/js/main.8bde7ba0.js" defer="defer" 
