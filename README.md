@@ -71,7 +71,7 @@ const cspConfigPolicy = {
     'frame-src': "'self'",
     'manifest-src': "'self'",
     'object-src': "'none'",
-    'script-src': ["'self'"],
+    'script-src': ["'strict-dynamic'"],
     'style-src': ["'self'"]
 };
 
@@ -95,7 +95,7 @@ For each CSS and JS a nonce value is assigned and all in-line styles and scripts
 ```xml
 <meta http-equiv="Content-Security-Policy" 
      content="base-uri 'self'; object-src 'none'; 
-     script-src 'self' 'nonce-hV1jy80qaffHEIfJ2wpryg=='; 
+     script-src 'strict-dynamic' 'nonce-hV1jy80qaffHEIfJ2wpryg=='; 
      style-src 'self' 'nonce-79pyUhldGFpDoALHNYfQzA==' 'nonce-BTVl+seb2fGInJbnPSfhVQ==' 'nonce-4kArpnz/wuhrQYZxqAJFqA=='; 
      default-src 'none'; 
      connect-src 'self'; 
