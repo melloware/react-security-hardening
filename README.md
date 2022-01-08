@@ -107,6 +107,12 @@ For each CSS and JS a nonce value is assigned and all in-line styles and scripts
 <link href="./assets/themes/lara-dark-indigo/theme.css" nonce="79pyUhldGFpDoALHNYfQzA==" rel="stylesheet">
 ```
 
+### Validate Policy
+
+You can validate your policy is CSP Level 2/3 compliant using the [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/).
+
+![CSP Evaluator Results](https://github.com/melloware/react-security-hardening/raw/main/public/images/csp-evaluator.png)
+
 ### PrimeReact
 
 [PrimeReact](https://www.primefaces.org/primereact/) is one of the most popular React UI libraries and it has special handling for 
