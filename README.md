@@ -12,6 +12,7 @@ on how to security harden my production applications.
 
 This article will show you how to make your CRA application more secure for your organization by implementing:
 - Content Security Policy (CSP)
+- Sanitizing HTML 
 - Subresource Integrity (SRI)
 - Excluding Source Maps
 
@@ -119,6 +120,36 @@ You can validate your policy is CSP Level 2/3 compliant using the [Google CSP Ev
 responsive design components.  PrimeReact injects in-line CSS styles for some components such as the [Datatable](https://primefaces.org/primereact/datatable/responsive/) to 
 handle the responsive features. In-line styles would be a CSP violation, but thanks to [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin) 
 it has special handling to allow PrimeReact to use its dynamic in-line styles without violating CSP rules.
+
+## Sanitizing HTML
+
+Real-world applications often run into requirements where they need to render dynamic HTML code.
+Assigning text-based code and data to `innerHTML` is a common mistake in JavaScript applications. This pattern is so dangerous that React does not expose `innerHTML` directly but encapsulates it in a property called [dangerouslySetInnerHTML](https://zhenyong.github.io/react/tips/dangerously-set-inner-html.html). 
+Improper use of the innerHTML can open you up to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack.
+
+> Our design philosophy is that it should be "easy" to make things safe, and developers should explicitly state their intent when performing "unsafe" operations. The prop name dangerouslySetInnerHTML is intentionally chosen to be frightening.
+
+**BAD (XSS attack):**
+
+```typescript
+const value = `<img src="nonexistent.png" onerror="alert('You have been hacked!');" />`;
+
+return (<p dangerouslySetInnerHTML={{__html: value}}></p>);
+```
+
+The above would execute the script in the browser to show you how a simple XSS attack would work.  You should **ALWAYS** sanitize your HTML before sending to `innerHTML` using a library like [DOMPurify](https://www.npmjs.com/package/isomorphic-dompurify).
+
+**GOOD:**
+
+```typescript
+// Import DOMPurify
+import DOMPurify from 'isomorphic-dompurify';
+
+// Sanitize the review
+return (<p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(value, {RETURN_TRUSTED_TYPE: true})}}></p>);
+```
+
+The code above would be sanitized and the `alert` script removed from the output.
 
 ## Subresource Integrity
 
