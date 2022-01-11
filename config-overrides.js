@@ -11,8 +11,9 @@ const cspConfigPolicy = {
     'frame-src': "'self'",
     'manifest-src': "'self'",
     'object-src': "'none'",
-    'script-src': ["'self'"],
-    'style-src': ["'self'"]
+    'style-src': ["'self'"],
+    'script-src': ["'strict-dynamic'"],
+    'require-trusted-types-for': ["'script'"]
 };
 
 function addCspHtmlWebpackPlugin(config) {

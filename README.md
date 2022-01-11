@@ -12,7 +12,7 @@ on how to security harden my production applications.
 
 This article will show you how to make your CRA application more secure for your organization by implementing:
 - Content Security Policy (CSP)
-- Sanitizing HTML 
+- Trusted Types and Sanitizing HTML 
 - Subresource Integrity (SRI)
 - Excluding Source Maps
 
@@ -42,10 +42,15 @@ GENERATE_SOURCEMAP=false
 
 ### Install CSP Plugin
 
-Install the dependencies including the [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin):
+Install the development dependencies including the [CSP Webpack Plugin](https://github.com/melloware/csp-webpack-plugin):
 
 ```shell
 $ npm install react-app-rewired customize-cra @melloware/csp-webpack-plugin --save-dev
+```
+
+Install runtime dependencies for [DOMPurify](https://www.npmjs.com/package/dompurify) and [Trusted Types](https://www.npmjs.com/package/trusted-types):
+```shell
+$ npm install dompurify trusted-types
 ```
 
 Update `package.json` to use [React App Rewired](https://github.com/timarney/react-app-rewired) so we can inject our Webpack build updates:
@@ -64,16 +69,17 @@ const CspHtmlWebpackPlugin = require("@melloware/csp-webpack-plugin");
 
 const cspConfigPolicy = {
     'default-src': "'none'",
+    'object-src': "'none'",
     'base-uri': "'self'",
     'connect-src': "'self'",
-    'worker-src': "'self' blob:",
+    'worker-src': "'self'",
     'img-src': "'self' blob: data: content:",
     'font-src': "'self'",
     'frame-src': "'self'",
     'manifest-src': "'self'",
-    'object-src': "'none'",
+    'style-src': ["'self'"],
     'script-src': ["'strict-dynamic'"],
-    'style-src': ["'self'"]
+    'require-trusted-types-for': ["'script'"]
 };
 
 function addCspHtmlWebpackPlugin(config) {
@@ -95,15 +101,18 @@ For each CSS and JS a nonce value is assigned and all in-line styles and scripts
 
 ```xml
 <meta http-equiv="Content-Security-Policy" 
-     content="base-uri 'self'; object-src 'none'; 
-     script-src 'strict-dynamic' 'nonce-hV1jy80qaffHEIfJ2wpryg=='; 
-     style-src 'self' 'nonce-79pyUhldGFpDoALHNYfQzA==' 'nonce-BTVl+seb2fGInJbnPSfhVQ==' 'nonce-4kArpnz/wuhrQYZxqAJFqA=='; 
-     default-src 'none'; 
-     connect-src 'self'; 
-     worker-src 'self' blob:; 
-     img-src 'self' blob: data: content:; 
-     font-src 'self'; 
-     frame-src 'self'">
+      content="base-uri 'self'; 
+      object-src 'none'; 
+      script-src 'strict-dynamic' 'nonce-CrAICtit7djMzvPP/AOk1Q=='; 
+      style-src 'self' 'nonce-hNq0/mMzZ+jWZOaWVGFguw==' 'nonce-5AlQofvVcR/v5P34fReEAw==' 'nonce-UzHYDLEeW68WnP3QweiB5A=='; 
+      default-src 'none'; 
+      connect-src 'self'; 
+      worker-src 'self'; 
+      img-src 'self' blob: data: content:; 
+      font-src 'self'; 
+      frame-src 'self'; 
+      manifest-src 'self'; 
+      require-trusted-types-for 'script'">
 
 <link href="./assets/themes/lara-dark-indigo/theme.css" nonce="79pyUhldGFpDoALHNYfQzA==" rel="stylesheet">
 ```
@@ -145,11 +154,12 @@ The above would execute the script in the browser to show you how a simple XSS a
 // Import DOMPurify
 import DOMPurify from 'isomorphic-dompurify';
 
-// Sanitize the review
+// Sanitize the HTML
 return (<p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(value, {RETURN_TRUSTED_TYPE: true})}}></p>);
 ```
 
-The code above would be sanitized and the `alert` script removed from the output.
+The code above would be sanitized and the `alert` script removed from the output.  However thanks to the CSP WebPack plugin [this code](https://github.com/melloware/csp-webpack-plugin#trusted-types) was automatically added so your entire codebase
+is now sanitized anywhere `innerHTML` is being used.
 
 ## Subresource Integrity
 
@@ -206,3 +216,5 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 In conclusion, you can choose to use any of these tips or pick and choose which tips to use.  I personally prefer to use all of them in my production applications. 
 If anyone has any more security hardening tips I would be happy to update this article and keep it updated.  All of the source code used in this article is available
 on GitHub here: [https://github.com/melloware/react-security-hardening](https://github.com/melloware/react-security-hardening)
+
+You can run `npm run start` and navigate to http://localhost:3000 to see this all in action!
