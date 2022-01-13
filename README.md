@@ -217,4 +217,4 @@ In conclusion, you can choose to use any of these tips or pick and choose which 
 If anyone has any more security hardening tips I would be happy to update this article and keep it updated.  All of the source code used in this article is available
 on GitHub here: [https://github.com/melloware/react-security-hardening](https://github.com/melloware/react-security-hardening)
 
-You can run `npm run start` and navigate to http://localhost:3000 to see this all in action!
+You can run `npm run build` then `serve -s build` and navigate to http://localhost:3000 to see this all in action!
