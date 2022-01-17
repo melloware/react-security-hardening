@@ -134,7 +134,7 @@ export const AppConfig = (props) => {
                 </div>
 
                 <h6>Input Style</h6>
-                <div className="p-formgroup-inline">
+                <div className="formgroup-inline">
                     <div className="field-radiobutton">
                         <RadioButton inputId="input_outlined" name="inputstyle" value="outlined" onChange={(e) => props.onInputStyleChange(e.value)} checked={props.inputStyle === 'outlined'} />
                         <label htmlFor="input_outlined">Outlined</label>
@@ -149,7 +149,7 @@ export const AppConfig = (props) => {
                 <InputSwitch checked={props.rippleEffect} onChange={props.onRippleEffect} />
 
                 <h6>Menu Type</h6>
-                <div className="p-formgroup-inline">
+                <div className="formgroup-inline">
                     <div className="field-radiobutton">
                         <RadioButton inputId="static" name="layoutMode" value="static" onChange={(e) => props.onLayoutModeChange(e.value)} checked={props.layoutMode === 'static'} />
                         <label htmlFor="static">Static</label>

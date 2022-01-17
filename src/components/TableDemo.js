@@ -157,7 +157,7 @@ export const TableDemo = () => {
     const representativeFilterTemplate = (options) => {
         return (<>
             <div className="mb-3 text-bold">Agent Picker</div>
-            <MultiSelect value={options.value} options={representatives} itemTemplate={representativesItemTemplate} onChange={(e) => options.filterCallback(e.value)} optionLabel="name" placeholder="Any" className="p-column-filter" />
+            <MultiSelect value={options.value} options={representatives} itemTemplate={representativesItemTemplate} onChange={(e) => options.filterCallback(e.value)} optionLabel="name" placeholder="Any" className="column-filter" />
         </>
         )
     }
@@ -192,7 +192,7 @@ export const TableDemo = () => {
     }
 
     const statusFilterTemplate = (options) => {
-        return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Select a Status" className="p-column-filter" showClear />;
+        return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Select a Status" className="column-filter" showClear />;
     }
 
     const statusItemTemplate = (option) => {

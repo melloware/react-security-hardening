@@ -62,7 +62,7 @@ export const MediaDemo = () => {
                         <img src={`assets/demo/images/product/${product.image}`} alt={product.name} className="product-image" />
                     </div>
                     <div>
-                        <h4 className="p-mb-1">
+                        <h4 className="mb-1">
                             {product.name}
                         </h4>
                         <h6 className="mt-0 mb-3">${product.price}</h6>

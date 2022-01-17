@@ -192,7 +192,7 @@ export const Crud = () => {
     const codeBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Code</span>
+                <span className="column-title">Code</span>
                 {rowData.code}
             </>
         );
@@ -201,7 +201,7 @@ export const Crud = () => {
     const nameBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Name</span>
+                <span className="column-title">Name</span>
                 {rowData.name}
             </>
         );
@@ -210,7 +210,7 @@ export const Crud = () => {
     const imageBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Image</span>
+                <span className="column-title">Image</span>
                 <img src={`assets/demo/images/product/${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
             </>
         )
@@ -219,7 +219,7 @@ export const Crud = () => {
     const priceBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Price</span>
+                <span className="column-title">Price</span>
                 {formatCurrency(rowData.price)}
             </>
         );
@@ -228,7 +228,7 @@ export const Crud = () => {
     const categoryBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Category</span>
+                <span className="column-title">Category</span>
                 {rowData.category}
             </>
         );
@@ -237,7 +237,7 @@ export const Crud = () => {
     const ratingBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Reviews</span>
+                <span className="column-title">Reviews</span>
                 <Rating value={rowData.rating} readonly cancel={false} />
             </>
         );
@@ -246,7 +246,7 @@ export const Crud = () => {
     const statusBodyTemplate = (rowData) => {
         return (
             <>
-                <span className="p-column-title">Status</span>
+                <span className="column-title">Status</span>
                 <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>
             </>
         )
