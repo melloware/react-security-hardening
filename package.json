@@ -29,7 +29,7 @@
         "customize-cra": "^1.0.0",
         "react-app-rewired": "^2.1.11",
         "react-scripts": "^5.0.0",
-        "sass": "1.47.0"
+        "sass": "1.48.0"
     },
     "scripts": {
         "start": "react-app-rewired start",
