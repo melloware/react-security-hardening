@@ -28,8 +28,8 @@
         "@melloware/csp-webpack-plugin": "^6.0.3",
         "customize-cra": "^1.0.0",
         "react-app-rewired": "^2.1.11",
-        "react-scripts": "^5.0.0",
-        "sass": "1.49.0"
+        "react-scripts": "5.0.0",
+        "sass": "1.49.4"
     },
     "scripts": {
         "start": "react-app-rewired start",
