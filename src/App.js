@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import { Route, Routes, useLocation} from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import { AppTopbar } from './AppTopbar';
@@ -8,44 +8,44 @@ import { AppFooter } from './AppFooter';
 import { AppMenu } from './AppMenu';
 import { AppConfig } from './AppConfig';
 
-import { Dashboard } from './components/Dashboard';
-import { ButtonDemo } from './components/ButtonDemo';
-import { ChartDemo } from './components/ChartDemo';
-import { Documentation } from './components/Documentation';
-import { FileDemo } from './components/FileDemo';
-import { FloatLabelDemo } from './components/FloatLabelDemo';
-import { FormLayoutDemo } from './components/FormLayoutDemo';
-import { InputDemo } from './components/InputDemo';
-import { ListDemo } from './components/ListDemo';
-import { MenuDemo } from './components/MenuDemo';
-import { MessagesDemo } from './components/MessagesDemo';
-import { MiscDemo } from './components/MiscDemo';
-import { OverlayDemo } from './components/OverlayDemo';
-import { MediaDemo } from './components/MediaDemo';
-import { PanelDemo } from './components/PanelDemo';
-import { TableDemo } from './components/TableDemo';
-import { TreeDemo } from './components/TreeDemo';
-import { InvalidStateDemo } from './components/InvalidStateDemo';
-import { BlocksDemo } from './components/BlocksDemo';
-import { IconsDemo } from './components/IconsDemo';
+import Dashboard from './components/Dashboard';
+import ButtonDemo from './components/ButtonDemo';
+import ChartDemo from './components/ChartDemo';
+import Documentation from './components/Documentation';
+import FileDemo from './components/FileDemo';
+import FloatLabelDemo from './components/FloatLabelDemo';
+import FormLayoutDemo from './components/FormLayoutDemo';
+import InputDemo from './components/InputDemo';
+import ListDemo from './components/ListDemo';
+import MenuDemo from './components/MenuDemo';
+import MessagesDemo from './components/MessagesDemo';
+import MiscDemo from './components/MiscDemo';
+import OverlayDemo from './components/OverlayDemo';
+import MediaDemo from './components/MediaDemo';
+import PanelDemo from './components/PanelDemo';
+import TableDemo from './components/TableDemo';
+import TreeDemo from './components/TreeDemo';
+import InvalidStateDemo from './components/InvalidStateDemo';
+import BlocksDemo from './components/BlocksDemo';
+import IconsDemo from './components/IconsDemo';
 
-import { Crud } from './pages/Crud';
-import { EmptyPage } from './pages/EmptyPage';
-import { TimelineDemo } from './pages/TimelineDemo';
+import Crud from './pages/Crud';
+import EmptyPage from './pages/EmptyPage';
+import TimelineDemo from './pages/TimelineDemo';
 
 import PrimeReact from 'primereact/api';
 import { Tooltip } from 'primereact/tooltip';
 
-import 'primereact/resources/primereact.min.css';
+import 'primereact/resources/primereact.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import 'prismjs/themes/prism-coy.css';
-import './assets/layout/flags/flags.css';
-import './assets//layout/layout.scss';
+import './assets/demo/flags/flags.css';
+import './assets/demo/Demos.scss';
+import './assets/layout/layout.scss';
 import './App.scss';
 
 const App = () => {
-
     const [layoutMode, setLayoutMode] = useState('static');
     const [layoutColorMode, setLayoutColorMode] = useState('dark')
     const [inputStyle, setInputStyle] = useState('outlined');
@@ -62,7 +62,6 @@ const App = () => {
     let menuClick = false;
     let mobileTopbarMenuClick = false;
 
-
     useEffect(() => {
         if (mobileMenuActive) {
             addClass(document.body, "body-overflow-hidden");
@@ -73,6 +72,7 @@ const App = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
+        copyTooltipRef && copyTooltipRef.current && copyTooltipRef.current.updateTargetEvents();
     }, [location]);
 
     const onInputStyleChange = (inputStyle) => {
@@ -164,7 +164,7 @@ const App = () => {
             }]
         },
         {
-            label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
+            label: 'UI Components', icon: 'pi pi-fw pi-sitemap',
             items: [
                 { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout' },
                 { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input' },
@@ -297,31 +297,31 @@ const App = () => {
 
             <div className="layout-main-container">
                 <div className="layout-main">
-                   <Routes>
-                       <Route path="/" exact element={<Dashboard/>} />
-                       <Route path="/formlayout" element={<FormLayoutDemo/>} />
-                       <Route path="/input" element={<InputDemo/>} />
-                       <Route path="/floatlabel" element={<FloatLabelDemo/>} />
-                       <Route path="/invalidstate" element={<InvalidStateDemo/>} />
-                       <Route path="/button" element={<ButtonDemo/>} />
-                       <Route path="/table" element={<TableDemo/>} />
-                       <Route path="/list" element={<ListDemo/>} />
-                       <Route path="/tree" element={<TreeDemo/>} />
-                       <Route path="/panel" element={<PanelDemo/>} />
-                       <Route path="/overlay" element={<OverlayDemo/>} />
-                       <Route path="/media" element={<MediaDemo/>} />
-                       <Route path="/menu" element={<MenuDemo/>} />
-                       <Route path="/messages" element={<MessagesDemo/>} />
-                       <Route path="/blocks" element={<BlocksDemo/>} />
-                       <Route path="/icons" element={<IconsDemo/>} />
-                       <Route path="/file" element={<FileDemo/>} />
-                       <Route path="/chart" element={<ChartDemo/>} />
-                       <Route path="/misc" element={<MiscDemo/>} />
-                       <Route path="/timeline" element={<TimelineDemo/>} />
-                       <Route path="/crud" element={<Crud/>} />
-                       <Route path="/empty" element={<EmptyPage/>} />
-                       <Route path="/documentation" element={<Documentation/>} />
-                    </Routes>
+				 <Routes>
+                    <Route path="/" exact element={<Dashboard colorMode={layoutColorMode} location={location} />} />
+                    <Route path="/formlayout" element={<FormLayoutDemo/>} />
+                    <Route path="/input" element={<InputDemo/>} />
+                    <Route path="/floatlabel" element={<FloatLabelDemo/>} />
+                    <Route path="/invalidstate" element={<InvalidStateDemo/>} />
+                    <Route path="/button" element={<ButtonDemo/>} />
+                    <Route path="/table" element={<TableDemo/>} />
+                    <Route path="/list" element={<ListDemo/>} />
+                    <Route path="/tree" element={<TreeDemo/>} />
+                    <Route path="/panel" element={<PanelDemo/>} />
+                    <Route path="/overlay" element={<OverlayDemo/>} />
+                    <Route path="/media" element={<MediaDemo/>} />
+                    <Route path="/menu" element={<MenuDemo/>} />
+                    <Route path="/messages" element={<MessagesDemo/>} />
+                    <Route path="/blocks" element={<BlocksDemo/>} />
+                    <Route path="/icons" element={<IconsDemo/>} />
+                    <Route path="/file" element={<FileDemo/>} />
+                    <Route path="/chart" element={<ChartDemo colorMode={layoutColorMode} location={location} />} />
+                    <Route path="/misc" element={<MiscDemo/>} />
+                    <Route path="/timeline" element={<TimelineDemo/>} />
+                    <Route path="/crud" element={<Crud/>} />
+                    <Route path="/empty" element={<EmptyPage/>} />
+                    <Route path="/documentation" element={<Documentation/>} />
+				</Routes>
                 </div>
 
                 <AppFooter layoutColorMode={layoutColorMode} />

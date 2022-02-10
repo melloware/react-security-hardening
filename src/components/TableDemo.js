@@ -3,7 +3,6 @@ import { classNames } from 'primereact/utils';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
@@ -17,12 +16,11 @@ import { Rating } from 'primereact/rating';
 import { CustomerService } from '../service/CustomerService';
 import { ProductService } from '../service/ProductService';
 
-export const TableDemo = () => {
+const TableDemo = () => {
     const [customers1, setCustomers1] = useState(null);
     const [customers2, setCustomers2] = useState([]);
     const [customers3, setCustomers3] = useState([]);
     const [filters1, setFilters1] = useState(null);
-    const [globalFilterValue1, setGlobalFilterValue1] = useState('');
     const [loading1, setLoading1] = useState(true);
     const [loading2, setLoading2] = useState(true);
     const [idFrozen, setIdFrozen] = useState(false);
@@ -87,19 +85,6 @@ export const TableDemo = () => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     }
 
-    const clearFilter1 = () => {
-        initFilters1();
-    }
-
-    const onGlobalFilterChange1 = (e) => {
-        const value = e.target.value;
-        let _filters1 = { ...filters1 };
-        _filters1['global'].value = value;
-
-        setFilters1(_filters1);
-        setGlobalFilterValue1(value);
-    }
-
     const initFilters1 = () => {
         setFilters1({
             'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -112,20 +97,8 @@ export const TableDemo = () => {
             'activity': { value: null, matchMode: FilterMatchMode.BETWEEN },
             'verified': { value: null, matchMode: FilterMatchMode.EQUALS }
         });
-        setGlobalFilterValue1('');
     }
 
-    const renderHeader1 = () => {
-        return (
-            <div className="flex justify-content-between flex-column sm:flex-row">
-                <Button type="button" icon="pi pi-filter-slash" label="Clear" className="p-button-outlined mb-2" onClick={clearFilter1} />
-                <span className="p-input-icon-left mb-2">
-                    <i className="pi pi-search" />
-                    <InputText value={globalFilterValue1} onChange={onGlobalFilterChange1} placeholder="Keyword Search" style={{ width: '100%' }} />
-                </span>
-            </div>
-        )
-    }
 
     const countryBodyTemplate = (rowData) => {
         return (
@@ -157,7 +130,7 @@ export const TableDemo = () => {
     const representativeFilterTemplate = (options) => {
         return (<>
             <div className="mb-3 text-bold">Agent Picker</div>
-            <MultiSelect value={options.value} options={representatives} itemTemplate={representativesItemTemplate} onChange={(e) => options.filterCallback(e.value)} optionLabel="name" placeholder="Any" className="column-filter" />
+            <MultiSelect value={options.value} options={representatives} itemTemplate={representativesItemTemplate} onChange={(e) => options.filterCallback(e.value)} optionLabel="name" placeholder="Any" className="p-column-filter" />
         </>
         )
     }
@@ -192,7 +165,7 @@ export const TableDemo = () => {
     }
 
     const statusFilterTemplate = (options) => {
-        return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Select a Status" className="column-filter" showClear />;
+        return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Select a Status" className="p-column-filter" showClear />;
     }
 
     const statusItemTemplate = (option) => {
@@ -317,9 +290,6 @@ export const TableDemo = () => {
         return total;
     }
 
-
-    const header1 = renderHeader1();
-
     return (
         <div className="grid table-demo">
             <div className="col-12">
@@ -327,7 +297,7 @@ export const TableDemo = () => {
                     <h5>Filter Menu</h5>
                     <DataTable value={customers1} paginator className="p-datatable-gridlines" showGridlines rows={10}
                         dataKey="id" filters={filters1} filterDisplay="menu" loading={loading1} responsiveLayout="scroll"
-                        globalFilterFields={['name', 'country.name', 'representative.name', 'balance', 'status']} header={header1} emptyMessage="No customers found.">
+                          emptyMessage="No customers found.">
                         <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} />
                         <Column header="Country" filterField="country.name" style={{ minWidth: '12rem' }} body={countryBodyTemplate} filter filterPlaceholder="Search by country"
                             filterClear={filterClearTemplate} filterApply={filterApplyTemplate} />
@@ -350,16 +320,16 @@ export const TableDemo = () => {
                     <ToggleButton checked={idFrozen} onChange={(e) => setIdFrozen(e.value)} onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Unfreeze Id" offLabel="Freeze Id" style={{ width: '10rem' }} />
 
                     <DataTable value={customers2} scrollable scrollHeight="400px" loading={loading2} scrollDirection="both" className="mt-3">
-                        <Column field="name" header="Name" style={{ width: '150px' }} frozen></Column>
-                        <Column field="id" header="Id" style={{ width: '100px' }} frozen={idFrozen} alignFrozen="left"></Column>
-                        <Column field="name" header="Name" style={{ width: '200px' }}></Column>
-                        <Column field="country.name" header="Country" style={{ width: '200px' }} body={countryBodyTemplate}></Column>
-                        <Column field="date" header="Date" style={{ width: '200px' }} body={dateBodyTemplate}></Column>
-                        <Column field="company" header="Company" style={{ width: '200px' }}></Column>
-                        <Column field="status" header="Status" style={{ width: '200px' }} body={statusBodyTemplate}></Column>
-                        <Column field="activity" header="Activity" style={{ width: '200px' }}></Column>
-                        <Column field="representative.name" header="Representative" style={{ width: '200px' }} body={representativeBodyTemplate}></Column>
-                        <Column field="balance" header="Balance" body={balanceTemplate} frozen style={{ width: '150px' }} alignFrozen="right"></Column>
+                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '160px' }} frozen></Column>
+                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left"></Column>
+                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column field="country.name" header="Country" style={{ flexGrow: 1, flexBasis: '200px' }} body={countryBodyTemplate}></Column>
+                        <Column field="date" header="Date" style={{ flexGrow: 1, flexBasis: '200px' }} body={dateBodyTemplate}></Column>
+                        <Column field="company" header="Company" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column field="status" header="Status" style={{ flexGrow: 1, flexBasis: '200px' }} body={statusBodyTemplate}></Column>
+                        <Column field="activity" header="Activity" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column field="representative.name" header="Representative" style={{ flexGrow: 1, flexBasis: '200px' }} body={representativeBodyTemplate}></Column>
+                        <Column field="balance" header="Balance" body={balanceTemplate} frozen style={{ flexGrow: 1, flexBasis: '120px' }} alignFrozen="right"></Column>
                     </DataTable>
                 </div>
             </div>
@@ -395,6 +365,11 @@ export const TableDemo = () => {
                 </div>
             </div>
         </div>
-
     );
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(TableDemo, comparisonFn);

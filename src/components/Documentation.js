@@ -1,7 +1,7 @@
 import React from 'react';
 import { CodeHighlight } from './CodeHighlight';
 
-export const Documentation = () => {
+const Documentation = () => {
 
     return (
         <div className="grid">
@@ -78,7 +78,6 @@ export const Documentation = () => {
 $fontSize:14px;
 $borderRadius:12px;
 $transitionDuration:.2s;
-$maskBg:rgba(0, 0, 0, 0.4);
 `}
 </CodeHighlight>
                 </div>
@@ -86,3 +85,9 @@ $maskBg:rgba(0, 0, 0, 0.4);
         </div>
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(Documentation, comparisonFn);

@@ -23,7 +23,6 @@ import { CountryService } from '../service/CountryService';
 import { NodeService } from '../service/NodeService';
 
 export const InputDemo = () => {
-
     const [floatValue, setFloatValue] = useState('');
     const [autoValue, setAutoValue] = useState(null);
     const [selectedAutoValue, setSelectedAutoValue] = useState(null);
@@ -121,8 +120,8 @@ export const InputDemo = () => {
 
     const itemTemplate = (option) => {
         return (
-            <div className="country-item">
-                <span className={`flag flag-${option.code.toLowerCase()}`} />
+            <div className="flex align-items-center">
+                <span className={`mr-2 flag flag-${option.code.toLowerCase()}`} style={{ width: '18px', height: '12px' }} />
                 <span>{option.name}</span>
             </div>
         );
@@ -131,8 +130,8 @@ export const InputDemo = () => {
     const selectedItemTemplate = (option) => {
         if (option) {
             return (
-                <div className="country-item country-item-value">
-                    <span className={`flag flag-${option.code.toLowerCase()}`} />
+                <div className="inline-flex align-items-center py-1 px-2 bg-primary text-primary border-round mr-2">
+                    <span className={`mr-2 flag flag-${option.code.toLowerCase()}`} style={{ width: '18px', height: '12px' }}/>
                     <span>{option.name}</span>
                 </div>
             );
@@ -285,7 +284,7 @@ export const InputDemo = () => {
 
                     <h5>MultiSelect</h5>
                     <MultiSelect value={multiselectValue} onChange={(e) => setMultiselectValue(e.value)} options={multiselectValues} optionLabel="name" placeholder="Select Countries" filter
-                        itemTemplate={itemTemplate} selectedItemTemplate={selectedItemTemplate} className="multiselect-custom" />
+                        itemTemplate={itemTemplate} selectedItemTemplate={selectedItemTemplate} />
 
                     <h5>TreeSelect</h5>
                     <TreeSelect value={selectedNode} onChange={(e) => setSelectedNode(e.value)} options={treeSelectNodes} placeholder="Select Item"></TreeSelect>
@@ -347,3 +346,9 @@ export const InputDemo = () => {
         </div >
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(InputDemo, comparisonFn);
