@@ -33,7 +33,7 @@ const purgeCssPlugin = new PurgecssPlugin({
     safelist: {
       standard: [],
       deep: [],
-      greedy: [/p-/, /col-/, /flag/, /layout/]
+      greedy: [/p-/,/pi-/, /col-/, /flag/, /layout/, /customer/]
     } 
 });
 
