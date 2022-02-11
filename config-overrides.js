@@ -1,6 +1,14 @@
+// utilities
 const { override } = require('customize-cra');
-const CspHtmlWebpackPlugin = require("@melloware/csp-webpack-plugin");
+const glob = require('glob-all');
+const paths = require("react-scripts/config/paths");
 
+// plugins
+const CspHtmlWebpackPlugin = require("@melloware/csp-webpack-plugin");
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+
+
+// Content Security Policy
 const cspConfigPolicy = {
     'default-src': "'none'",
     'base-uri': "'self'",
@@ -16,14 +24,25 @@ const cspConfigPolicy = {
     'require-trusted-types-for': ["'script'"]
 };
 
-function addCspHtmlWebpackPlugin(config) {
-    if (process.env.NODE_ENV === 'production') {
-        config.plugins.push(new CspHtmlWebpackPlugin(cspConfigPolicy));
+// Enable CSP and SRI. See https://github.com/melloware/csp-webpack-plugin
+const cspPlugin = new CspHtmlWebpackPlugin(cspConfigPolicy);
+
+// Remove unused CSS with PurgeCSS. See https://github.com/FullHuman/purgecss
+const purgeCssPlugin = new PurgecssPlugin({
+    paths: [paths.appHtml, ...glob.sync(`${paths.appSrc}/**/*`, { nodir: true })]
+});
+
+
+// add all plugins to Webpack pipeline in correct order
+function addPlugins(config, env) {
+    if (env === 'production') {
+        config.plugins.push(purgeCssPlugin);
+        config.plugins.push(cspPlugin);
         config.output.crossOriginLoading = "anonymous";
     }
     return config;
 }
 
 module.exports = {
-    webpack: override(addCspHtmlWebpackPlugin),
+    webpack: override(addPlugins),
 };
