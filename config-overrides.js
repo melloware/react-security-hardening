@@ -7,7 +7,6 @@ const paths = require("react-scripts/config/paths");
 const CspHtmlWebpackPlugin = require("@melloware/csp-webpack-plugin");
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 
-
 // Content Security Policy
 const cspConfigPolicy = {
     'default-src': "'none'",
@@ -36,7 +35,6 @@ const purgeCssPlugin = new PurgecssPlugin({
       greedy: [/p-/,/pi-/, /col-/, /flag/, /layout/, /customer/]
     } 
 });
-
 
 // add all plugins to Webpack pipeline in correct order
 function addPlugins(config, env) {
