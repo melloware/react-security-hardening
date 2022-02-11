@@ -21,6 +21,7 @@ import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { CountryService } from '../service/CountryService';
 import { NodeService } from '../service/NodeService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 export const InputDemo = () => {
     const [floatValue, setFloatValue] = useState('');
@@ -347,8 +348,5 @@ export const InputDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(InputDemo, comparisonFn);
+export default memoLocation(InputDemo);

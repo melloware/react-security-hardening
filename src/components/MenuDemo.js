@@ -15,6 +15,7 @@ import { PersonalDemo } from '../components/menu/PersonalDemo';
 import { ConfirmationDemo } from '../components/menu/ConfirmationDemo';
 import { PaymentDemo } from '../components/menu/PaymentDemo';
 import { SeatDemo } from '../components/menu/SeatDemo';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const MenuDemo = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -584,8 +585,4 @@ const MenuDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(MenuDemo, comparisonFn);
+export default memoLocation(MenuDemo);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const EmptyPage = () => {
 
@@ -14,8 +15,5 @@ const EmptyPage = () => {
     );
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(EmptyPage, comparisonFn);
+export default memoLocation(EmptyPage);

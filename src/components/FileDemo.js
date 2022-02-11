@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { FileUpload } from 'primereact/fileupload';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const FileDemo = () => {
     const toast = useRef(null);
@@ -23,8 +24,5 @@ const FileDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(FileDemo, comparisonFn);
+export default memoLocation(FileDemo);

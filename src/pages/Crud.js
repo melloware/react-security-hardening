@@ -13,6 +13,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { ProductService } from '../service/ProductService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const Crud = () => {
     let emptyProduct = {
@@ -377,8 +378,5 @@ const Crud = () => {
     );
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(Crud, comparisonFn);
+export default memoLocation(Crud);

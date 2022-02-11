@@ -10,6 +10,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
 import { Password } from 'primereact/password';
 import { CountryService } from '../service/CountryService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const InvalidStateDemo = () => {
     const [countries, setCountries] = useState([]);
@@ -112,8 +113,4 @@ const InvalidStateDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(InvalidStateDemo, comparisonFn);
+export default memoLocation(InvalidStateDemo);

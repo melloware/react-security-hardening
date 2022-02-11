@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { Image } from "primereact/image";
 import { ProductService } from '../service/ProductService';
 import { PhotoService } from '../service/PhotoService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const MediaDemo = () => {
     const [products, setProducts] = useState([]);
@@ -109,8 +110,4 @@ const MediaDemo = () => {
     );
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(MediaDemo, comparisonFn);
+export default memoLocation(MediaDemo);

@@ -15,6 +15,7 @@ import { ToggleButton } from 'primereact/togglebutton';
 import { Rating } from 'primereact/rating';
 import { CustomerService } from '../service/CustomerService';
 import { ProductService } from '../service/ProductService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const TableDemo = () => {
     const [customers1, setCustomers1] = useState(null);
@@ -368,8 +369,4 @@ const TableDemo = () => {
     );
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(TableDemo, comparisonFn);
+export default memoLocation(TableDemo);

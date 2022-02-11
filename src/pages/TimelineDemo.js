@@ -3,6 +3,7 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Timeline } from 'primereact/timeline';
 import classNames from 'classnames';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const TimelineDemo = () => {
     const customEvents = [
@@ -57,8 +58,4 @@ const TimelineDemo = () => {
     </div>
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(TimelineDemo, comparisonFn);
+export default memoLocation(TimelineDemo);

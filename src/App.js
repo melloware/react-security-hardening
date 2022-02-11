@@ -298,7 +298,7 @@ const App = () => {
             <div className="layout-main-container">
                 <div className="layout-main">
 				 <Routes>
-                    <Route path="/" exact element={<Dashboard colorMode={layoutColorMode} location={location} />} />
+                    <Route path="/" exact={true} element={<Dashboard colorMode={layoutColorMode} location={location} />} />
                     <Route path="/formlayout" element={<FormLayoutDemo/>} />
                     <Route path="/input" element={<InputDemo/>} />
                     <Route path="/floatlabel" element={<FloatLabelDemo/>} />

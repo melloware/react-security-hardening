@@ -1,5 +1,6 @@
 import React from 'react';
 import { CodeHighlight } from './CodeHighlight';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const Documentation = () => {
 
@@ -86,8 +87,5 @@ $transitionDuration:.2s;
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(Documentation, comparisonFn);
+export default memoLocation(Documentation);

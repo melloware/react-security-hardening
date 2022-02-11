@@ -3,6 +3,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Dropdown } from 'primereact/dropdown';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const FormLayoutDemo = () => {
     const [dropdownItem, setDropdownItem] = useState(null);
@@ -123,8 +124,4 @@ const FormLayoutDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(FormLayoutDemo, comparisonFn);
+export default memoLocation(FormLayoutDemo);

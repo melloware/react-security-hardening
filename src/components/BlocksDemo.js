@@ -4,6 +4,7 @@ import { Chip } from 'primereact/chip';
 import { InputText } from 'primereact/inputtext';
 import { Checkbox } from 'primereact/checkbox';
 import BlockViewer from '../BlockViewer';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const BlocksDemo = () => {
     const [checked, setChecked] = useState(false);
@@ -831,8 +832,4 @@ const BlocksDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(BlocksDemo, comparisonFn);
+export default memoLocation(BlocksDemo);

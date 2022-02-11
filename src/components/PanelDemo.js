@@ -12,6 +12,7 @@ import { InputText } from 'primereact/inputtext';
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import { Password } from 'primereact/password';
 import {Menu} from "primereact/menu";
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const PanelDemo = () => {
     const menu1 = useRef(null);
@@ -245,8 +246,4 @@ const PanelDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(PanelDemo, comparisonFn);
+export default memoLocation(PanelDemo);

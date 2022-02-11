@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'primereact/chart';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -400,8 +401,4 @@ const ChartDemo = (props) => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return (prevProps.location.pathname === nextProps.location.pathname) && (prevProps.colorMode === nextProps.colorMode);
-};
-
-export default React.memo(ChartDemo, comparisonFn);
+export default memoLocation(ChartDemo);

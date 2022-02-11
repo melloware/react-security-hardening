@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { InputText } from 'primereact/inputtext';
 import { CodeHighlight } from './CodeHighlight';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const IconsDemo = () => {
     const [icons, setIcons] = useState([]);
@@ -137,8 +138,4 @@ const items = [
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(IconsDemo, comparisonFn);
+export default memoLocation(IconsDemo);

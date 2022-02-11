@@ -4,6 +4,7 @@ import { Messages } from 'primereact/messages';
 import { Message } from 'primereact/message';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const MessagesDemo = () => {
     const [username, setUsername] = useState('');
@@ -103,8 +104,5 @@ const MessagesDemo = () => {
     );
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(MessagesDemo, comparisonFn);
+export default memoLocation(MessagesDemo);

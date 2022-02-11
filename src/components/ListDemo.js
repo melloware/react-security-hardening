@@ -6,6 +6,7 @@ import { Rating } from 'primereact/rating';
 import { PickList } from 'primereact/picklist';
 import { OrderList } from 'primereact/orderlist';
 import { ProductService } from '../service/ProductService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const ListDemo = () => {
     const listValue = [
@@ -154,8 +155,5 @@ const ListDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(ListDemo, comparisonFn);
+export default memoLocation(ListDemo);

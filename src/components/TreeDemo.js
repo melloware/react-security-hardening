@@ -3,6 +3,7 @@ import { Tree } from 'primereact/tree';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
 import { NodeService } from '../service/NodeService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const TreeDemo = () => {
     const [treeNodes, setTreeNodes] = useState([]);
@@ -38,8 +39,5 @@ const TreeDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
 
-export default React.memo(TreeDemo, comparisonFn);
+export default memoLocation(TreeDemo);

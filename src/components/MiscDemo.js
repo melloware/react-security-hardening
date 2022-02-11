@@ -9,6 +9,7 @@ import { Chip } from 'primereact/chip';
 import { Skeleton } from 'primereact/skeleton';
 import { ScrollPanel } from 'primereact/scrollpanel';
 import { ScrollTop } from 'primereact/scrolltop';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const MiscDemo = () => {
     const [value, setValue] = useState(0);
@@ -198,8 +199,4 @@ const MiscDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(MiscDemo, comparisonFn);
+export default memoLocation(MiscDemo);

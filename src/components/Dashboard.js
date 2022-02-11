@@ -5,6 +5,7 @@ import { Chart } from 'primereact/chart';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { ProductService } from '../service/ProductService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -347,8 +348,4 @@ const Dashboard = (props) => {
     );
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return (prevProps.location.pathname === nextProps.location.pathname) && (prevProps.colorMode === nextProps.colorMode);
-};
-
-export default React.memo(Dashboard, comparisonFn);
+export default memoLocation(Dashboard);

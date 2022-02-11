@@ -9,6 +9,7 @@ import {Chips} from 'primereact/chips';
 import {Dropdown} from 'primereact/dropdown';
 import {MultiSelect} from 'primereact/multiselect';
 import {CountryService} from '../service/CountryService';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const FloatLabelDemo = () => {
     const [countries, setCountries] = useState([]);
@@ -127,8 +128,4 @@ const FloatLabelDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(FloatLabelDemo, comparisonFn);
+export default memoLocation(FloatLabelDemo);

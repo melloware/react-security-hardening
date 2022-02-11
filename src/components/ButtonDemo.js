@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
 import { SplitButton } from 'primereact/splitbutton';
+import { memoLocation } from '../utilities/LocationMemoization';
 
 const ButtonDemo = () => {
     const [loading1, setLoading1] = useState(false);
@@ -190,8 +191,4 @@ const ButtonDemo = () => {
     )
 }
 
-const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
-};
-
-export default React.memo(ButtonDemo, comparisonFn);
+export default memoLocation(ButtonDemo);
