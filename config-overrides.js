@@ -29,7 +29,12 @@ const cspPlugin = new CspHtmlWebpackPlugin(cspConfigPolicy);
 
 // Remove unused CSS with PurgeCSS. See https://github.com/FullHuman/purgecss
 const purgeCssPlugin = new PurgecssPlugin({
-    paths: [paths.appHtml, ...glob.sync(`${paths.appSrc}/**/*`, { nodir: true })]
+    paths: [paths.appHtml, ...glob.sync(`${paths.appSrc}/**/*`, { nodir: true })],
+    safelist: {
+      standard: [],
+      deep: [],
+      greedy: [/p-/, /col-/, /flag/, /layout/]
+    } 
 });
 
 
