@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Timeline } from 'primereact/timeline';
-import classNames from 'classnames';
+import { classNames } from "primereact/utils";
 import { memoLocation } from '../utilities/LocationMemoization';
 
 const TimelineDemo = () => {

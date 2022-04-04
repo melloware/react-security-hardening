@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import classNames from 'classnames';
+import { classNames } from "primereact/utils";
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
