@@ -7,7 +7,7 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { InputText } from 'primereact/inputtext';
-import { confirmPopup } from 'primereact/confirmpopup';
+import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
 import { ProductService } from '../service/ProductService';
 import { memoLocation } from '../utilities/LocationMemoization';
 
@@ -183,7 +183,7 @@ const OverlayDemo = () => {
                 </div>
             </div>
 
-
+            <ConfirmPopup />
         </>
     )
 }
