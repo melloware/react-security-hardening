@@ -336,7 +336,7 @@ export const InputDemo = () => {
                         <div className="col-12 md:col-6">
                             <div className="p-inputgroup">
                                 <span className="p-inputgroup-addon p-inputgroup-addon-checkbox">
-                                    <Checkbox checked={inputGroupValue} onChange={(e) => setInputGroupValue(e.checked)} binary />
+                                    <Checkbox checked={inputGroupValue} onChange={(e) => setInputGroupValue(e.checked)} />
                                 </span>
                                 <InputText placeholder="Confirm" />
                             </div>

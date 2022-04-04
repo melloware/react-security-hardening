@@ -238,7 +238,7 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Reviews</span>
-                <Rating value={rowData.rating} readonly cancel={false} />
+                <Rating value={rowData.rating} readOnly cancel={false} />
             </>
         );
     }

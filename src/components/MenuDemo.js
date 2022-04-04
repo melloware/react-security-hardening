@@ -10,7 +10,7 @@ import { Button } from 'primereact/button';
 import { ContextMenu } from 'primereact/contextmenu';
 import { MegaMenu } from 'primereact/megamenu';
 import { PanelMenu } from 'primereact/panelmenu';
-import { Route, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { PersonalDemo } from '../components/menu/PersonalDemo';
 import { ConfirmationDemo } from '../components/menu/ConfirmationDemo';
 import { PaymentDemo } from '../components/menu/PaymentDemo';
@@ -518,10 +518,12 @@ const MenuDemo = () => {
                 <div className="card card-w-title">
                     <h5>Steps</h5>
                     <Steps model={wizardItems} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false} />
+                     <Routes>
                     <Route exact path={'/menu'} component={PersonalDemo} />
                     <Route path={'/menu/confirmation'} component={ConfirmationDemo} />
                     <Route path={'/menu/payment'} component={PaymentDemo} />
                     <Route path={'/menu/seat'} component={SeatDemo} />
+                     </Routes>
                 </div>
             </div>
 
@@ -529,10 +531,12 @@ const MenuDemo = () => {
                 <div className="card card-w-title">
                     <h5>TabMenu</h5>
                     <TabMenu model={wizardItems} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
+                     <Routes>
                     <Route exact path={'/menu'} component={PersonalDemo} />
                     <Route path={'/menu/confirmation'} component={ConfirmationDemo} />
                     <Route path={'/menu/payment'} component={PaymentDemo} />
                     <Route path={'/menu/seat'} component={SeatDemo} />
+                     </Routes>
                 </div>
             </div>
 

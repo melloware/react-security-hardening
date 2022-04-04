@@ -72,7 +72,7 @@ const ListDemo = () => {
                     <div className="flex-1 text-center md:text-left">
                         <div className="font-bold text-2xl">{data.name}</div>
                         <div className="mb-3">{data.description}</div>
-                        <Rating value={data.rating} readonly cancel={false} className="mb-2"></Rating>
+                        <Rating value={data.rating} readOnly cancel={false} className="mb-2"></Rating>
                         <div className="flex align-items-center">
                             <i className="pi pi-tag mr-2"></i>
                             <span className="font-semibold">{data.category}</span>
@@ -103,7 +103,7 @@ const ListDemo = () => {
                         <img src={`assets/demo/images/product/${data.image}`} alt={data.name} className="w-9 shadow-2 my-3 mx-0" />
                         <div className="text-2xl font-bold">{data.name}</div>
                         <div className="mb-3">{data.description}</div>
-                        <Rating value={data.rating} readonly cancel={false} />
+                        <Rating value={data.rating} readOnly cancel={false} />
                     </div>
                     <div className="flex align-items-center justify-content-between">
                         <span className="text-2xl font-semibold">${data.price}</span>
