@@ -29,7 +29,7 @@
         "glob-all": "^3.3.0",
         "purgecss-webpack-plugin": "^4.1.3",
         "react-app-rewired": "^2.2.1",
-        "react-scripts": "5.0.0",
+        "react-scripts": "5.0.1",
         "sass": "1.50.0"
     },
     "scripts": {
