@@ -11,7 +11,7 @@
     "license": "MIT",
     "dependencies": {
         "axios": "0.27.2",
-        "chart.js": "3.8.0",
+        "chart.js": "3.8.2",
         "dompurify": "^2.3.10",
         "primeflex": "3.2.1",
         "primeicons": "^5.0.0",
