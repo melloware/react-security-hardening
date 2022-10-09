@@ -10,7 +10,7 @@
     },
     "license": "MIT",
     "dependencies": {
-        "axios": "0.27.2",
+        "axios": "1.1.2",
         "chart.js": "3.9.1",
         "dompurify": "^2.4.0",
         "primeflex": "3.2.1",
