@@ -1,6 +1,6 @@
 {
     "name": "react-security-hardening",
-    "version": "9.1.1",
+    "version": "9.6.0",
     "description": "Demonstration of a PrimeReact application using security hardening techniques for CSP and SRI.",
     "homepage": ".",
     "private": false,
@@ -15,7 +15,7 @@
         "dompurify": "^3.0.3",
         "primeflex": "3.3.1",
         "primeicons": "^6.0.1",
-        "primereact": "9.5.0",
+        "primereact": "9.6.0",
         "prismjs": "1.29.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
