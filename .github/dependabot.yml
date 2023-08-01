@@ -4,3 +4,5 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "yearly"
+    allow:
+      - dependency-type: "production"
